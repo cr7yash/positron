@@ -15,6 +15,10 @@
  * Vega puts `fit-y` on `.vega-embed`, or on its `.chart-wrapper` child when the
  * actions menu is shown, so both are matched. Every element that contains either
  * one, `.vega-embed` included, matches the `:has()` rule.
+ *
+ * Altair puts the actions button in a row beside the chart, where it takes width
+ * only after Vega first measures. Giving it no width keeps the chart's width the
+ * same on every draw; the button sits in the padding Vega leaves for it.
  */
 export const FILL_VIEWPORT_CSS = `
 <style>
@@ -22,5 +26,9 @@ export const FILL_VIEWPORT_CSS = `
 	.vega-embed.fit-y,
 	.vega-embed.fit-y > .chart-wrapper {
 		height: 100%;
+	}
+	.vega-embed.fit-x > details {
+		width: 0;
+		min-width: 0;
 	}
 </style>`;
